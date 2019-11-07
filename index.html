@@ -1,232 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+extends base
+- var current_title = page.title || tag.name || category.name || site.title
 
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+block title
+  if config.subtitle
+    title= config.title + ' | ' + config.subtitle
+  else
+    title= config.title
+block content
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-ruihan02" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/07/ruihan02/" class="article-date">
-  <time datetime="2019-11-07T12:10:38.000Z" itemprop="datePublished">2019-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/ruihan02/">ruihan02</a>
-    </h1>
-  
+  for post in page.posts.toArray()
+    .post
+      h2.post-title
+        include _partial/helpers
+        a(href=url_for(post.path))
+          +title(post)
+      .post-meta
+        if theme.comment.changyan.appid && theme.comment.changyan.appkey
+          a.comment-count(href=url_for(post.path) + '#comments')
+            span.cy_cmt_count(id = 'url::' + config.url +'/'+ post.path)
+            = ''+ __('guestbook') + ','
+            span.cy_cmt_participate(id = 'url::' + config.url +'/'+ post.path)
+            = ''+ __('participate')
+        p
+          if post.top
+            span= '【' + __('topped') + '】'
+          span.date= post.date.format(config.date_format)
+          if post.categories.length > 0
+            span
+              for category in post.categories.toArray()
+                a.category(href=url_for(category.path))= category.name
+      if post.description
+        .post-content
+          != post.description
+      else if post.excerpt
+        .post-content
+          != post.excerpt
+      else if post.content
+        - var br = post.content.indexOf('\n')
+        if br < 0
+          .post-content
+            != post.content
+        else
+          .post-content
+            != post.content.substring(0, br)
+      p(class='readmore')
+        a(href=url_for(post.path))= __('Readmore')
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数据定义<br>模式<br>基本表<br>索引<br>数据查询<br>数据更新<br>插入数据<br>插入元组<br>INSERT<br>INTO&lt;表名&gt;[(&lt;属性列&gt;[,&lt;属性列&gt;]…..)]<br>VALUES(&lt;常量1&gt;[,&lt;常量2&gt;]…);<br>插入子查询结果<br>INSERT<br>INTO&lt;表名&gt;[(&lt;属性列&gt;[,&lt;属性列&gt;]…..)]<br>子查询；<br>修改数据<br>UPDATE&lt;表名&gt;<br>SET&lt;列名&gt;=&lt;表达式&gt;[,&lt;列名&gt;=&lt;表达式&gt;]…..<br>[WHERE&lt;条件&gt;]；<br>修改一个元组的值<br>修改多个元组的值<br>带子查询的修改语句<br>删除数据<br>DELETE<br>FROM&lt;表格&gt;<br>[WHERE&lt;条件&gt;]；<br>删除一个元组的值<br>删除多个元组的值<br>带子查询的删除语句<br>空值（“不知道”、“不存在”或“无意义”的值）的处理<br>空值判断：IS NULL 或IS NOT NULL<br>空置约束条件：属性定义中有NOT NULL约束条件的不能取空值，加了UNIQUE限制的不能取空值，码属性不能取空值<br>空值的算数、比较和逻辑运算：空值与另一个值的算数运算结果为空值，比较运算结果为UNKNOWN，逻辑运算扩展为了三值逻辑。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/ruihan02/" data-id="ck2oo9ys70001igu6f9cy126j" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ruihan" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/07/ruihan/" class="article-date">
-  <time datetime="2019-11-07T12:06:48.000Z" itemprop="datePublished">2019-11-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/07/ruihan/">ruihan</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>把关系模式看成一个三元组<br>第一范式：每一个分量必须是不可分的数据项<br>数据依赖<br><img src="https://pic.superbed.cn/item/5dc407038e0e2e3ee95f1e24.png" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/ruihan/" data-id="ck2oo9ys20000igu63dlt0fwz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/blog/" style="font-size: 10px;">blog</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/11/07/ruihan02/">ruihan02</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/07/ruihan/">ruihan</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
-</html>
+  include _partial/paginator
+block pageOnly
+  script(type='text/javascript', src=url_for(theme.js) + '/totop.js' + '?v=' + theme.version, async)
+  if theme.comment.changyan.appid && theme.comment.changyan.appkey
+    script(id="cy_cmt_num", src='https://changyan.sohu.com/upload/plugins/plugins.list.count.js' + '?clientId=' + theme.comment.changyan.appid)

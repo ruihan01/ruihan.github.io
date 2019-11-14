@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>ruihan</title>
+    <link href="undefined2019/11/14/ruihan/"/>
+    <url>2019/11/14/ruihan/</url>
+    
+    <content type="html"><![CDATA[<p>存储的是以key-value形式存在<br>key无序无重复，value无序可重复</p><p>带默认空间的构造方法<br>带collection参数的构造方法</p><ul><li>存<br>add(E e)<br>add(int index,E e)<br>addAll(Collection c)—-&gt;list1.addAll(Collection &lt;? extends E&gt;list2) 并集。 addAll(int index,Collection c)</li><li>取<br>boolean t=list.contains(Object obj);看某个元素是否存在<br>int t=list.indexOf(Object obj);<br>lastIndexOf();<br>list1.retainAll(list2);交集，找list1中和list2相同的元素<br>List list=list.subList(begin,end);截取。</li><li>删<br>remove(int index);<br>remove(Object obj); 如果想直接删除集合中的一个整数，不应该 remove(1),这样删除的是1位置的那个数，应该remove(new Integer(1))<br>A.removeAll(B);从A集合中删除B集合元素,差集。<br>clear();将集合中的全部元素清除<br>boolean t = list.isEmpty();判断是否为空</li><li>改<br>E t=list.set(int index,E value)<br>Object[] array=list.toArray(); 把集合变为数组，不带参数的<br>toArray(T[])；带参数的</li><li>个数 size<br>Iterator=list.iterator();迭代器<br>trimToSize(); 变成有效元素个数那么长。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">       ArrayList&lt;String&gt; list=new ArrayList();</span><br><span class="line">       list.add(&quot;abc&quot;);</span><br><span class="line">       list.add(&quot;e&quot;);</span><br><span class="line">       list.add(&quot;f&quot;);</span><br><span class="line">       System.out.println(list.size());</span><br><span class="line">       //删除集合中全部元素</span><br><span class="line">       int size=list.size();</span><br><span class="line">       for(int i=0;i&lt;size;i++)&#123;</span><br><span class="line">           //不能直接写i&lt;list.size()，因为size在删除过程中是变化的，会导致删不干净，</span><br><span class="line">           // 所以在上面先定义一个size</span><br><span class="line">           String value =list.remove(i);</span><br><span class="line">           System.out.println(value);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure><h6 id="JDK1-5之后—-gt-泛型"><a href="#JDK1-5之后—-gt-泛型" class="headerlink" title="JDK1.5之后—&gt;泛型"></a>JDK1.5之后—&gt;泛型</h6><ol><li>用来规定数据类型，定义的时候用一个符号代替某种类型。在使用的时候用具体的数据类型将定义的那个符号替换掉</li><li>泛型用在哪里？</li></ol><ul><li>泛型类</li><li>泛型接口<br>与泛型类的使用基本一致，子类实现接口时必须添加泛型。</li></ul><ol><li>泛型不能使用基本类型，如果想使用基本类型，则需要使用其对应的包装类。</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public interface Test&lt;X&gt;&#123;</span><br><span class="line">    public X value;</span><br><span class="line">&#125;</span><br><span class="line">public class Son&lt;X&gt; implements Test&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>泛型方法<br>方法调用时传参数，方法的泛型与类无关，带有泛型的方法可以不放在带有泛型的类中</li><li>高级泛型</li></ul><h5 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h5><h5 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h5>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>集合</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

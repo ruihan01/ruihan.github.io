@@ -134,6 +134,44 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/15/%E9%9B%86%E5%90%88%E5%AE%9E%E6%88%98-%E8%80%83%E8%AF%95%E6%A8%A1%E6%8B%9F/">
+        <p class="h4 index-header">集合实战--考试模拟</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">**制作一个考试模拟过程： **考试机存储好多题目 学生考试之前需要先登录认证考试机随机生成试卷，每个试卷五道题学生利用生成的试卷考试老师批阅卷子，给出考试成绩
+代码分析：有几个实体类？—-》有几个实体
+考试题目有两个属性—》题干和正确答案
+方法—》判断题干是否一样，HashSet的不重复机制本来就是equals和hashCode方法起作用。因为我们的题目定的是Question类型的，equals方法是没有被重写的。所以我们需要先重写equals和hashCode方法。
+考试机器属性—》学生信息库HashMap块—对象形成过程中同时添加元素
+属性—》题库，存取很多Question对象， 无重复HashSet，参数类型就是Qusetion块—对象形成过程中同时添加元素
+方法—》登录
+方法—》抽取题目，形成试卷我们需要随机抽取五道题形成一份试卷，但是Set是无序的，所以我们先转化为ArrayList，方便我们用Random抽取。抽取完我们需要形成试卷，试卷是做什么的呢？试卷是学生做题用的，做题需要一个一个答，那就需要遍历，所以我们把试卷封装成ArrayList
+学生方法 —》考试（参数：试</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-15&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E9%9B%86%E5%90%88%E7%9A%84%E5%BA%94%E7%94%A8----%E8%80%83%E8%AF%95%E6%A8%A1%E6%8B%9F%E7%BB%83%E4%B9%A0">集合的应用----考试模拟练习</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/11/14/ruihan/">
         <p class="h4 index-header">ruihan</p>
         

@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>ruihan ~ Hexo</title>
+  <title>集合---List家族 ~ Hexo</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -111,7 +111,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Thursday, November 14th 2019, 8:19 pm
+                  Friday, November 15th 2019, 10:15 am
                 </p>
               
 
@@ -120,7 +120,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    545 字
+                    1.1k 字
                   </span>&nbsp;
                 
 
@@ -128,7 +128,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      4 分钟
                   </span>&nbsp;
                 
 
@@ -161,8 +161,11 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>存储的是以key-value形式存在<br>key无序无重复，value无序可重复</p>
-<p>带默认空间的构造方法<br>带collection参数的构造方法</p>
+            <p>集合<br>指具有某种特定性质的具体或抽象的对象汇总而成的集体<br>用来存储一组元素，与数组类似，集合的长度存储之后还能改变<br>集合</p>
+<h4 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h4><p>存储的都是value对象<br>子分支：<br>List —有序可重复<br>Set —无序无重复<br>Queue</p>
+<h4 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h4><p>存储的是以key-value形式存在<br>key无序无重复，value无序可重复</p>
+<p>序：顺序 添加进去的顺序 取得元素的顺序一致 注意不是指的集合自己的顺序<br>List集合</p>
+<h5 id="ArrayList—-gt-底层就是一个数组"><a href="#ArrayList—-gt-底层就是一个数组" class="headerlink" title="ArrayList—&gt;底层就是一个数组"></a>ArrayList—&gt;底层就是一个数组</h5><p>1.java.util<br>2.无参数构造方法<br>带默认空间的构造方法<br>带collection参数的构造方法</p>
 <ul>
 <li>存<br>add(E e)<br>add(int index,E e)<br>addAll(Collection c)—-&gt;list1.addAll(Collection &lt;? extends E&gt;list2) 并集。 addAll(int index,Collection c)</li>
 <li>取<br>boolean t=list.contains(Object obj);看某个元素是否存在<br>int t=list.indexOf(Object obj);<br>lastIndexOf();<br>list1.retainAll(list2);交集，找list1中和list2相同的元素<br>List list=list.subList(begin,end);截取。</li>
@@ -189,7 +192,47 @@
 <li>泛型方法<br>方法调用时传参数，方法的泛型与类无关，带有泛型的方法可以不放在带有泛型的类中</li>
 <li>高级泛型</li>
 </ul>
-<h5 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h5><h5 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h5>
+<h5 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h5><ol>
+<li>java.util包</li>
+<li>是ArrayList集合的早期版本，Vector底层也是利用动态数组的形式存储；Vector是线程同步的，安全性高，效率低。</li>
+<li>扩容方式默认是扩容两倍 ，与ArrayList不同（ArrayList是1.5倍） ，可以通过构造方法创建对象修改这一机制。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package vector;</span><br><span class="line">import java.util.Vector;//导包</span><br><span class="line"></span><br><span class="line">public class TestVector &#123;</span><br><span class="line">    public static void main(String[]args)&#123;</span><br><span class="line">        Vector&lt;String&gt; vector=new Vector(4,4);</span><br><span class="line">        //有参数构造方法，第一个参数为开始时的容量大小，第二个参数为每次扩容多少</span><br><span class="line">        /*</span><br><span class="line">        vector.add(&quot;a&quot;);</span><br><span class="line">        vector.add(&quot;b&quot;);</span><br><span class="line">        vector.add(&quot;c&quot;);</span><br><span class="line">        System.out.println(vector);//结果：[a, b, c]</span><br><span class="line">        */</span><br><span class="line">        for (int i=1;i&lt;=22;i++)&#123;</span><br><span class="line">            vector.add(&quot;a&quot;);</span><br><span class="line">            System.out.println(vector.size()+&quot;---------------&quot;+vector.capacity());//有效元素个数-----真实数组容量</span><br><span class="line">            //System.out.println(vector.capacity());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>构造方法</li>
+<li>常用的方法</li>
+</ol>
+<h5 id="Stack类-栈"><a href="#Stack类-栈" class="headerlink" title="Stack类 栈"></a>Stack类 栈</h5><ol>
+<li>java.util包</li>
+<li>构造方法只有一个无参数的</li>
+<li>除了继承自Vector的方法外还有几个特殊方法</li>
+</ol>
+<ul>
+<li>push(E e);将某一个元素压入栈顶（add();）</li>
+<li>E = pop();将某一个元素从栈顶取出并删掉（E = remove();）</li>
+<li>peek();查看栈顶的一个元素，不删除（get();）</li>
+<li>boolean = empty();判断栈内元素是否为空（isEmpty();）</li>
+<li>int =search();查找给定的元素在栈中的位置（indexOf();）</li>
+</ul>
+<h5 id="Queue接口-—-gt-Collection子类"><a href="#Queue接口-—-gt-Collection子类" class="headerlink" title="Queue接口 —&gt;Collection子类"></a>Queue接口 —&gt;Collection子类</h5><ol>
+<li>java.util</li>
+<li>通过无参数构造方法创建</li>
+<li>方法</li>
+</ol>
+<ul>
+<li>boolean = offer(E e)—&gt;相当于add();</li>
+<li>E = peek();——&gt;相当于element();—-&gt;相当于get();</li>
+<li>E = poll();—&gt;相当于remove();</li>
+</ul>
+<h5 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h5><ol>
+<li>java.util包</li>
+<li>底层使用双向链表的数据结构形式来存储，适合于插入或删除，不适合遍历</li>
+<li>构建对象：无参数构造方法；带参数的构造方法（参数为collection）</li>
+<li>常用方法：增add(); ，删remove();，改set();，查get();，长度size();</li>
+<li>手册中提供的其它方法：<br>addAll(); addFirst(); addLast(); clear(); contains(); element(); getFirst(); indexOf(); lastIndexOf(); ……</li>
+</ol>
+
             <hr>
           </div>
           <br>
@@ -200,7 +243,7 @@
               <span>
                 <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/%E9%9B%86%E5%90%88">集合</a>
+                  <a class="hover-with-bg" href="/tags/%E9%9B%86%E5%90%88---List%E5%AE%B6%E6%97%8F">集合---List家族</a>
                 
               </span>
             
@@ -352,7 +395,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "ruihan&nbsp;",
+        "集合---List家族&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

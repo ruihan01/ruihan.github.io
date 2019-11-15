@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>集合---Set家族：HashSet和TreeSet ~ Hexo</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Hexo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/longma.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Friday, November 15th 2019, 10:17 am
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.2k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      10 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><ol>
+<li>具体的实现类</li>
+<li>基本的使用</li>
+<li>无序（我们使用集合存放元素的顺序，集合内取出来的顺序不一致）无重复</li>
+</ol>
+<h5 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h5><p>—&gt;底层是HashMap–&gt;（数组+链表）散链表 邻接链表</p>
+<ol>
+<li>java.util包</li>
+<li>如何创建对象：无参数；有参数</li>
+<li>集合容器的基本使用：增删改查</li>
+</ol>
+<ul>
+<li>add(value); addAll(collection c); retainAll(); removeAll(); boolean = remove(Object)[返回值布尔型]；没有修改方法set; size();</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">        HashSet&lt;String&gt; set=new HashSet&lt;String&gt;();//无序无重复</span><br><span class="line">        set.add(&quot;A&quot;);</span><br><span class="line">        set.add(&quot;a&quot;);</span><br><span class="line">        set.add(&quot;B&quot;);</span><br><span class="line">        set.add(&quot;c&quot;);</span><br><span class="line">        set.add(&quot;b&quot;);</span><br><span class="line">        set.add(&quot;C&quot;);</span><br><span class="line">        for (String v:set)&#123;</span><br><span class="line">            System.out.println(v);</span><br><span class="line">        &#125;//没有get(int index);方法，所以用增强for循环完成遍历</span><br><span class="line">        System.out.println(set);//结果：[A, a, B, b, c, C]</span><br><span class="line">        set.remove(&quot;B&quot;);</span><br><span class="line">        System.out.println(set);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>iterator() 获取一个迭代器对象<br>关于Iterator主要有三个方法：hasNext()、next()、remove()<br>hasNext:没有指针下移操作，只是判断是否存在下一个元素<br>next：指针下移，返回该指针所指向的元素<br>remove：删除当前指针所指向的元素，一般和next方法一起用，这时候的作用就是删除next方法返回的元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">        HashSet&lt;String&gt; set=new HashSet&lt;String&gt;();//无序无重复</span><br><span class="line">        set.add(&quot;A&quot;);</span><br><span class="line">        set.add(&quot;a&quot;);</span><br><span class="line">        set.add(&quot;B&quot;);</span><br><span class="line">        set.add(&quot;c&quot;);</span><br><span class="line">        set.add(&quot;b&quot;);</span><br><span class="line">        set.add(&quot;C&quot;);</span><br><span class="line">        //另一种遍历方式</span><br><span class="line">        //获取一个迭代器，通过set集合获取</span><br><span class="line">        Iterator&lt;String&gt; iterator=set.iterator();//Iterator是java.util中的一个类</span><br><span class="line">        //hasNext()判断下一个位置是否有元素,有的话用next()取。</span><br><span class="line">        while(iterator.hasNext())&#123;</span><br><span class="line">            String value=iterator.next();</span><br><span class="line">            System.out.println(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4. <em>无重复机制\</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">       HashSet&lt;String&gt; stringset=new HashSet&lt;String&gt;();</span><br><span class="line">       stringset.add(new String(&quot;ff&quot;));</span><br><span class="line">       stringset.add(new String(&quot;ff&quot;));</span><br><span class="line">       stringset.add(new String(&quot;ff&quot;));</span><br><span class="line">       stringset.add(new String(&quot;ff&quot;));</span><br><span class="line">       stringset.add(new String(&quot;ff&quot;));</span><br><span class="line">       System.out.println(stringset.size());//结果为1</span><br><span class="line">       </span><br><span class="line">       HashSet&lt;Person&gt; personset=new HashSet&lt;Person&gt;();</span><br><span class="line">       personset.add(new Person(&quot;ff&quot;));</span><br><span class="line">       personset.add(new Person(&quot;ff&quot;));</span><br><span class="line">       personset.add(new Person(&quot;ff&quot;));</span><br><span class="line">       personset.add(new Person(&quot;ff&quot;));</span><br><span class="line">       personset.add(new Person(&quot;ff&quot;));</span><br><span class="line">       System.out.println(personset.size());//结果是5，虽然名字都一样，但是引用不一样，</span><br></pre></td></tr></table></figure>
+
+<p>首先通过String类型和Person类型存储，大概猜测：无重复的原则，是利用equals方法进行比较。如果我们想让Person对象的name一致则认为是同一个对象，我们可以重写equals方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">package Set;</span><br><span class="line">public class Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    public Person(String name)&#123;</span><br><span class="line">        this.name=name;</span><br><span class="line">    &#125;</span><br><span class="line">    //重写equals方法</span><br><span class="line">    public boolean equals(Object obj) &#123;</span><br><span class="line">        if(this==obj)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        if(obj instanceof  Person)&#123;</span><br><span class="line">            //obj还原为Person类型</span><br><span class="line">            Person anotherPerson =(Person)obj;</span><br><span class="line">            //this anotherPerson比较对象中的name属性</span><br><span class="line">            if(this.name.equals(anotherPerson.name))&#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    public String getName()&#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>验证一下重写是否成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">        Person p1=new Person(&quot;ff&quot;);</span><br><span class="line">        Person p2=new Person(&quot;ff&quot;);</span><br><span class="line">        System.out.println(p1.equals(p2));//结果为true，说明我们重写方法成功了</span><br></pre></td></tr></table></figure>
+
+<p>但是重写equals之后发现还是没有产生无重复的效果，System.out.println(personset.size());结果依然为5，证明可能原则不止equals一个方法这么简单。还有另一个规则同时起作用hashCode方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//重写hashCode方法</span><br><span class="line"></span><br><span class="line">    public int hashCode() &#123;</span><br><span class="line">        //两个person对象name属性一致，需要让hashCode返回值一致。</span><br><span class="line">        return this.name.hashCode();//这里用的是String 的hashCode方法</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法也重写之后，则产生了无重复的效果，System.out.println(personset.size());结果依然为1。<br>五个Person对象只剩下一个，那是哪一个呢？给Person类加一个属性testNum，进行判断一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">package Set;</span><br><span class="line"></span><br><span class="line">public class Person &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private int testNum;//记录人是谁</span><br><span class="line">    public Person(String name,int testNum)&#123;</span><br><span class="line">        this.name=name;</span><br><span class="line">        this.testNum=testNum;</span><br><span class="line">    &#125;</span><br><span class="line">    //重写equals方法</span><br><span class="line">    public boolean equals(Object obj) &#123;</span><br><span class="line">        if(this==obj)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        if(obj instanceof  Person)&#123;</span><br><span class="line">            //obj还原为Person类型</span><br><span class="line">            Person anotherPerson =(Person)obj;</span><br><span class="line">            //this anotherPerson比较对象中的name属性</span><br><span class="line">            if(this.name.equals(anotherPerson.name))&#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">//重写hashCode方法</span><br><span class="line">    public int hashCode() &#123;</span><br><span class="line">        //两个person对象name属性一致，需要让hashCode返回值一致。</span><br><span class="line">        return this.name.hashCode();//这里用的是String 的hashCode方法</span><br><span class="line">    &#125;</span><br><span class="line">    public String getName()&#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line">    public int getTestNum()&#123;</span><br><span class="line">        return testNum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">HashSet&lt;Person&gt; personset=new HashSet&lt;Person&gt;();</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,1));</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,2));</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,3));</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,4));</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,5));</span><br><span class="line">       // System.out.println(personset.size());</span><br><span class="line">        System.out.println(personset.iterator().next().getTestNum());</span><br><span class="line">        //结果为1，说明获得的是第一个</span><br></pre></td></tr></table></figure>
+
+<p>因此可以得到set集合是发现重复的元素拒绝存入，它存储的是第一个。<br>那么我们可不可以直接打印输出集合里的东西呢？我们可以对toString方法进行重写如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//重写 toString方法，让对象打印输出的时候直接输出对象的属性，而不是hashC码</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        //return &quot;&#123;&quot;+this.name+&quot;,&quot;+this.testNum+&quot;&#125;&quot;;</span><br><span class="line">        // 因为这样拼接的效率要低，所以我们可以用StringBuilder来拼接</span><br><span class="line">        StringBuilder builder=new StringBuilder(&quot;&#123;&quot;);</span><br><span class="line">        builder.append(this.name);</span><br><span class="line">        builder.append(&quot;,&quot;);</span><br><span class="line">        builder.append(this.testNum);</span><br><span class="line">        builder.append(&quot;&#125;&quot;);</span><br><span class="line">        //不能直接return builder，</span><br><span class="line">        // 因为builder是 StringBuilder类型，而我们要的是String类型</span><br><span class="line">        //return builder.toString();</span><br><span class="line">        // 也可以这样写</span><br><span class="line">        return new String(builder);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后可以直接打印输出，如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;Person&gt; personset=new HashSet&lt;Person&gt;();</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,1));</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,2));</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,6));</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,4));</span><br><span class="line">        personset.add(new Person(&quot;ff&quot;,5));</span><br><span class="line">       // System.out.println(personset.size());//结果是5，虽然名字都一样，但是引用不一样</span><br><span class="line">        System.out.println(personset.iterator().next().getTestNum());//结果为1，说明获得的是第一个</span><br><span class="line">        System.out.println(personset);//结果为[&#123;ff,1&#125;],也说明了获得的是第一个，这样就不需要迭代器输出了。</span><br></pre></td></tr></table></figure>
+
+<h5 id="TreeSet-无序无重复-—-gt-底层是TreeMap-二叉树"><a href="#TreeSet-无序无重复-—-gt-底层是TreeMap-二叉树" class="headerlink" title="TreeSet 无序无重复 —&gt;底层是TreeMap (二叉树)"></a>TreeSet 无序无重复 —&gt;底层是TreeMap (二叉树)</h5><ol>
+<li>java.util包</li>
+<li>无参数构造方法；带Collection构造方法</li>
+<li>基本的常用方法：add(E e); iterator(); remove(E e); 没有修改；size();</li>
+<li><strong><em>无重复规则怎么实现的\</em></strong><br>treeSet 集合本身有顺序 ，我们指的无序存入和取出来的不一致</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class TestTreeSet &#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        TreeSet&lt;String&gt; treeSet=new TreeSet&lt;String&gt;();</span><br><span class="line">        treeSet.add(&quot;b&quot;);</span><br><span class="line">        treeSet.add(&quot;C&quot;);</span><br><span class="line">        treeSet.add(&quot;A&quot;);</span><br><span class="line">        treeSet.add(&quot;c&quot;);</span><br><span class="line">        treeSet.add(&quot;a&quot;);</span><br><span class="line">        treeSet.add(&quot;B&quot;);</span><br><span class="line">        treeSet.add(&quot;C&quot;);</span><br><span class="line">        treeSet.add(&quot;a&quot;);</span><br><span class="line">        System.out.println(treeSet.size());//结果为6，去重复</span><br><span class="line">        System.out.println(treeSet);//结果：[A, B, C, a, b, c]，可得treeSet本身有一定顺序</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>compareTo—-&gt;String类，按照字母的自然排序排布，故我们猜测TreeSet底层是compareTo方法规范的<br>我们拿Person创建的对象和String对象进行对比：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">      TreeSet&lt;String&gt; treeSet=new TreeSet&lt;String&gt;();</span><br><span class="line">      treeSet.add(new String(&quot;ff&quot;));</span><br><span class="line">      treeSet.add(new String(&quot;ff&quot;));</span><br><span class="line">      treeSet.add(new String(&quot;ff&quot;));</span><br><span class="line">      treeSet.add(new String(&quot;ff&quot;));</span><br><span class="line">      treeSet.add(new String(&quot;ff&quot;));</span><br><span class="line">      System.out.println(treeSet.size());//结果为1</span><br><span class="line"></span><br><span class="line">      TreeSet&lt;Person&gt; personTreeSet=new TreeSet&lt;Person&gt;();</span><br><span class="line">      personTreeSet.add(new Person(&quot;ff&quot;,5));</span><br><span class="line">      personTreeSet.add(new Person(&quot;ff&quot;,4));</span><br><span class="line">      personTreeSet.add(new Person(&quot;ff&quot;,3));</span><br><span class="line">      personTreeSet.add(new Person(&quot;ff&quot;,2));</span><br><span class="line">      personTreeSet.add(new Person(&quot;ff&quot;,1));</span><br><span class="line">      System.out.println(personTreeSet.size()); //ClassCastException---&gt;造型异常</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Person 对象那个之所以产生异常，是因为Person对象没有comapreTo方法，而String是有的。<br>如果我们想把自己写的类型，比如Person对象存入TreeSet集合里，不能随意的存储，需要让自己写的类先实现Comparable接口，重写compareTo方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class Person implements Comparable&lt;Person&gt;&#123;</span><br><span class="line">    //实现Comparable接口</span><br><span class="line">    //重写compareTo方法</span><br><span class="line">    public int compareTo(Person o) &#123;</span><br><span class="line">        return this.name.compareTo(o.name);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果不再有异常：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">TreeSet&lt;Person&gt; personTreeSet=new TreeSet&lt;Person&gt;();</span><br><span class="line">        personTreeSet.add(new Person(&quot;ff&quot;,5));</span><br><span class="line">        personTreeSet.add(new Person(&quot;ff&quot;,4));</span><br><span class="line">        personTreeSet.add(new Person(&quot;ff&quot;,3));</span><br><span class="line">        personTreeSet.add(new Person(&quot;ff&quot;,2));</span><br><span class="line">        personTreeSet.add(new Person(&quot;ff&quot;,1));</span><br><span class="line">        System.out.println(personTreeSet.size()); //结果为1</span><br><span class="line">        System.out.println(personTreeSet);//结果为：[&#123;ff,5&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>如果我们再给Person加一个年龄属性，设置一个规则如果姓名一样就按年龄排</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class Person implements Comparable&lt;Person&gt;&#123;</span><br><span class="line"></span><br><span class="line">    private String name;</span><br><span class="line">    private int testNum;//记录人是谁</span><br><span class="line">    private int age;</span><br><span class="line">    public Person(String name,int testNum,int age)&#123;</span><br><span class="line">        this.name=name;</span><br><span class="line">        this.testNum=testNum;</span><br><span class="line">        this.age=age;</span><br><span class="line">    &#125;</span><br><span class="line">    //实现Comparable接口</span><br><span class="line">    //重写compareTo方法</span><br><span class="line">    public int compareTo(Person o) &#123;</span><br><span class="line">        if (this.name.compareTo(o.name) != 0) &#123;</span><br><span class="line">            return this.name.compareTo(o.name);</span><br><span class="line">        &#125;</span><br><span class="line">        return this.age-o.age;//返回值正数靠后，返回值负数，靠前。</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">TreeSet&lt;Person&gt; personTreeSet=new TreeSet&lt;Person&gt;();</span><br><span class="line">       personTreeSet.add(new Person(&quot;ff&quot;,5,20));</span><br><span class="line">       personTreeSet.add(new Person(&quot;ff&quot;,4,19));</span><br><span class="line">       personTreeSet.add(new Person(&quot;ff&quot;,3,18));</span><br><span class="line">       personTreeSet.add(new Person(&quot;ff&quot;,2,17));</span><br><span class="line">       personTreeSet.add(new Person(&quot;ff&quot;,1,16));</span><br><span class="line">       System.out.println(personTreeSet.size()); //结果为：5</span><br><span class="line">       System.out.println(personTreeSet);//结果为：[&#123;ff,1,16&#125;, &#123;ff,2,17&#125;, &#123;ff,3,18&#125;, &#123;ff,4,19&#125;, &#123;ff,5,20&#125;]</span><br></pre></td></tr></table></figure>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E9%9B%86%E5%90%88---Set%E5%AE%B6%E6%97%8F%EF%BC%9AHashSet%E5%92%8CTreeSet">集合---Set家族：HashSet和TreeSet</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "集合---Set家族：HashSet和TreeSet&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

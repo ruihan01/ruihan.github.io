@@ -134,6 +134,133 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/15/%E9%9B%86%E5%90%88-Map%E5%AE%B6%E6%97%8F%EF%BC%9AHashMap%E5%92%8CTreeMap/">
+        <p class="h4 index-header">集合---Map家族：HashMap和TreeMap</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Map 映射
+通过某一个key可以直接定位到一个value值存储的方式是以键值对存储 key-value
+key无序无重复，无序指的是存入顺序与取得的顺序不一致，无重复指的是元素不能一致value无序可重复
+
+HashMap
+java.util包
+创建对象：
+
+1HashMap&lt;Integer,String&gt; map=new HashMap&lt;Integer, String&gt;();
+
+
+基本方法：增删改查
+
+
+put(key,value);存放一组映射，key-value key存储顺序与取得顺序不同不同的key可以存储相同的valuekey若有相同的，则将原有的value覆盖而不是拒绝存入（跟set不同）
+
+123456map.put(1,&quot;aaa&quot;);map.put(3,&quot;bbb&quot;);map.put(2,&quot;ccc&quot;);map.put(3,&quot;eee&quot;);//key相同map.put(5,&quot;aaa&quot;);//value相同System.out.println(map)</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-15&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E9%9B%86%E5%90%88---Map%E5%AE%B6%E6%97%8F%EF%BC%9AHashMap%E5%92%8CTreeMap">集合---Map家族：HashMap和TreeMap</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/15/%E9%9B%86%E5%90%88-Set%E5%AE%B6%E6%97%8F%EF%BC%9AHashSet%E5%92%8CTreeSet/">
+        <p class="h4 index-header">集合---Set家族：HashSet和TreeSet</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Set
+具体的实现类
+基本的使用
+无序（我们使用集合存放元素的顺序，集合内取出来的顺序不一致）无重复
+
+HashSet—&gt;底层是HashMap–&gt;（数组+链表）散链表 邻接链表
+
+java.util包
+如何创建对象：无参数；有参数
+集合容器的基本使用：增删改查
+
+
+add(value); addAll(collection c); retainAll(); removeAll(); boolean = remove(Object)[返回值布尔型]；没有修改方法set; size();
+
+123456789101112131415public static void main(String[] args)&#123;        HashSet&lt;String&gt; set=new HashSet&lt;String&gt;();//无序无重复        set.add(&quot;A&quot;);        set.add(&quot;a&quot;);        set.add(&quot;B&quot;);        set.add(&quot</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-15&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E9%9B%86%E5%90%88---Set%E5%AE%B6%E6%97%8F%EF%BC%9AHashSet%E5%92%8CTreeSet">集合---Set家族：HashSet和TreeSet</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/15/%E9%9B%86%E5%90%88-List%E5%AE%B6%E6%97%8F/">
+        <p class="h4 index-header">集合---List家族</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">集合指具有某种特定性质的具体或抽象的对象汇总而成的集体用来存储一组元素，与数组类似，集合的长度存储之后还能改变集合
+Collection存储的都是value对象子分支：List —有序可重复Set —无序无重复Queue
+Map存储的是以key-value形式存在key无序无重复，value无序可重复
+序：顺序 添加进去的顺序 取得元素的顺序一致 注意不是指的集合自己的顺序List集合
+ArrayList—&gt;底层就是一个数组1.java.util2.无参数构造方法带默认空间的构造方法带collection参数的构造方法
+
+存add(E e)add(int index,E e)addAll(Collection c)—-&gt;list1.addAll(Collection &lt;? extends E&gt;list2) 并集。 addAll(int index,Collection c)
+取boolean t=list.contains(Object obj);看某个元素是否存在int t=list.indexOf(Object obj);lastIndexOf();list</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-15&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E9%9B%86%E5%90%88---List%E5%AE%B6%E6%97%8F">集合---List家族</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/11/15/%E9%9B%86%E5%90%88%E5%AE%9E%E6%88%98-%E8%80%83%E8%AF%95%E6%A8%A1%E6%8B%9F/">
         <p class="h4 index-header">集合实战--考试模拟</p>
         
@@ -162,41 +289,6 @@
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/%E9%9B%86%E5%90%88%E7%9A%84%E5%BA%94%E7%94%A8----%E8%80%83%E8%AF%95%E6%A8%A1%E6%8B%9F%E7%BB%83%E4%B9%A0">集合的应用----考试模拟练习</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/14/ruihan/">
-        <p class="h4 index-header">ruihan</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">存储的是以key-value形式存在key无序无重复，value无序可重复
-带默认空间的构造方法带collection参数的构造方法
-
-存add(E e)add(int index,E e)addAll(Collection c)—-&gt;list1.addAll(Collection &lt;? extends E&gt;list2) 并集。 addAll(int index,Collection c)
-取boolean t=list.contains(Object obj);看某个元素是否存在int t=list.indexOf(Object obj);lastIndexOf();list1.retainAll(list2);交集，找list1中和list2相同的元素List list=list.subList(begin,end);截取。
-删remove(int index);remove(Object obj); 如果想直接删除集合中的一个整数，不应该 remove(1),这样删除的是1位置的那个数，应该remove(new Integer(1))A.removeAll(B)</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-14&nbsp;&nbsp;
-        
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E9%9B%86%E5%90%88">集合</a>&nbsp;
           
         
       </div>

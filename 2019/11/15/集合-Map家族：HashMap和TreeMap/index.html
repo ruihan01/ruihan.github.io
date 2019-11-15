@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>集合---Map家族：HashMap和TreeMap ~ Hexo</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Hexo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/longma.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Friday, November 15th 2019, 10:21 am
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.3k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      6 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h4 id="Map-映射"><a href="#Map-映射" class="headerlink" title="Map 映射"></a>Map 映射</h4><ul>
+<li>通过某一个key可以直接定位到一个value值<br>存储的方式是以键值对存储 key-value</li>
+<li>key无序无重复，无序指的是存入顺序与取得的顺序不一致，无重复指的是元素不能一致<br>value无序可重复</li>
+</ul>
+<h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h5><ol>
+<li>java.util包</li>
+<li>创建对象：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;Integer,String&gt; map=new HashMap&lt;Integer, String&gt;();</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>基本方法：增删改查</li>
+</ol>
+<ul>
+<li>put(key,value);存放一组映射，key-value key存储顺序与取得顺序不同<br>不同的key可以存储相同的value<br>key若有相同的，则将原有的value覆盖而不是拒绝存入（跟set不同）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">map.put(1,&quot;aaa&quot;);</span><br><span class="line">map.put(3,&quot;bbb&quot;);</span><br><span class="line">map.put(2,&quot;ccc&quot;);</span><br><span class="line">map.put(3,&quot;eee&quot;);//key相同</span><br><span class="line">map.put(5,&quot;aaa&quot;);//value相同</span><br><span class="line">System.out.println(map);//结果：&#123;1=aaa, 2=ccc, 3=eee, 5=aaa&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>remove(key); remove(key,value);</li>
+<li>可以用put();方法修改，也可用replace(key,newValue);方法</li>
+<li>E = get(key)</li>
+<li>遍历：获取到所有的，遍历key，通过key获得value</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; keys=map.keySet();//获取所有的key</span><br><span class="line">Iterator&lt;Integer&gt; iterator=keys.iterator();//用迭代器遍历</span><br><span class="line">while(iterator.hasNext())&#123;</span><br><span class="line">    Integer key=iterator.next();</span><br><span class="line">    String value=map.get(key);</span><br><span class="line">    System.out.println(key+&quot;----&quot;+value);</span><br><span class="line">    //结果：</span><br><span class="line">    // 1----aaa</span><br><span class="line">    //2----ccc</span><br><span class="line">    //3----eee</span><br><span class="line">    //5----aaa</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>还有一些其他的方法<br>clear();<br>containsKey(key);containsValue(value);<br>getOrDefault(key，defaultValue);如果key存在就返回value，如果没找到就返回默认值defaultValue<br>isEmpty();<br>putAll();<br>putIfAbsent(key,value);如果key不存在才向集合中存入，如果key存在则不存入。<br>Set<Key> = keySet();获取全部的key<br>Set<Entry> =entrySet();获取集合中全部的entry对象</li>
+<li>map集合什么情形用？</li>
+</ol>
+<ul>
+<li>想要存储一组元素 ：数组 或集合，如果存储的元素以后长度不变了，用数组；如果长度以后不确定用集合。</li>
+<li>List家族有序—存储有顺序用这个：<br>1.ArrayList —&gt;更适合遍历轮询<br>2.LinkedList—&gt;更适合插入和删除<br>3.Stack—&gt;LIFO<br>Set家族无重复—存储元素希望自动去掉重复元素用这个；<br>Map家族key-value—通过唯一的k快速找寻value值<br>1.HashMap<br>2.TreeMap—&gt;希望存进去的元素key可以自动排序</li>
+</ul>
+<ol>
+<li>登录服务</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">//设计一个方法，用来登录认证  ---&gt;一维数组</span><br><span class="line">    private String [] userBox=new String[]&#123;&quot;ff&quot;,&quot;ww&quot;,&quot;mxl&quot;&#125;;</span><br><span class="line">    private int [] passwordBox=new int[]&#123;123,666,999&#125;;</span><br><span class="line">    public String loginForArray(String name,String password)&#123;</span><br><span class="line"></span><br><span class="line">        for(int i=0;i&lt;userBox.length;i++)&#123;</span><br><span class="line">            if (userBox[i].equals(name))&#123;</span><br><span class="line">                if (passwordBox[i]==Integer.parseInt(password))&#123;</span><br><span class="line">                    return &quot;登录成功&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;登录失败&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"> //设计一个方法，用来登录认证  ---&gt;ArrayList</span><br><span class="line">    private ArrayList&lt;String&gt; userBox = new ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        userBox.add(&quot;ff-123&quot;);</span><br><span class="line">        userBox.add(&quot;ww-666&quot;);</span><br><span class="line">        userBox.add(&quot;mxl--999&quot;);</span><br><span class="line">    &#125;//用块完成初始化</span><br><span class="line"></span><br><span class="line">    public String loginForList(String name, String password) &#123;</span><br><span class="line">        for (int i = 0; i &lt; userBox.size(); i++) &#123;</span><br><span class="line">            String[] value = userBox.get(i).split(&quot;-&quot;);</span><br><span class="line">            if (value[0].equals(name)) &#123;</span><br><span class="line">                if (value[1] == password) &#123;</span><br><span class="line">                    return &quot;登录成功&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;登录失败&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"> //设计一个方法，登录认证 ----&gt;Set</span><br><span class="line">    private HashSet&lt;String&gt; userBox = new HashSet&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        userBox.add(&quot;ff-123&quot;);</span><br><span class="line">        userBox.add(&quot;ww-666&quot;);</span><br><span class="line">        userBox.add(&quot;mxl--999&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String loginForSet(String name, String password) &#123;</span><br><span class="line">        Iterator&lt;String&gt; iterator = userBox.iterator();</span><br><span class="line">        while (iterator.hasNext()) &#123;</span><br><span class="line">            String[] value = iterator.next().split(&quot;-&quot;);</span><br><span class="line">            if (value[0].equals(name)) &#123;</span><br><span class="line">                if (value[1] == password) &#123;</span><br><span class="line">                    return &quot;登录成功&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;登录失败&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">//设计一个方法，登录认证---&gt;Map</span><br><span class="line">    private HashMap&lt;String,String&gt; userBox=new HashMap&lt;String, String&gt;();</span><br><span class="line">    &#123;</span><br><span class="line">        userBox.put(&quot;ff&quot;,&quot;123&quot;);</span><br><span class="line">        userBox.put(&quot;ww&quot;,&quot;123&quot;);</span><br><span class="line">        userBox.put(&quot;mxl&quot;,&quot;123&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public String loginForMap(String name,String password)&#123;</span><br><span class="line">        String realPassword =userBox.get(name);</span><br><span class="line">        if(realPassword!=null &amp;&amp;realPassword.equals(password))&#123;</span><br><span class="line">                return &quot;登录成功&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;登录失败&quot;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>HashMap底层的数据结构存储<br>散列表的形式 —数组+链表<br>Person对象存入HashMap中？可以 map&lt;String,Person&gt;<br>hashCode方法—&gt;不同的对象，可以产生相同的hashCode码<br>不同的hashCode码—&gt;不同的对象<br>用Entry完成遍历，如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">package map;</span><br><span class="line"></span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">public class TeatHashMap &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        HashMap&lt;Integer, String&gt; map = new HashMap&lt;Integer, String&gt;();</span><br><span class="line">        map.put(1, &quot;aaa&quot;);</span><br><span class="line">        map.put(3, &quot;bbb&quot;);</span><br><span class="line">        map.put(2, &quot;ccc&quot;);</span><br><span class="line">        map.put(3, &quot;eee&quot;);//key相同</span><br><span class="line">        map.put(5, &quot;aaa&quot;);//value相同</span><br><span class="line">        Set&lt;Map.Entry&lt;Integer, String&gt;&gt; entries = map.entrySet();//获取集合中全部的entry对象</span><br><span class="line">        Iterator&lt;Map.Entry&lt;Integer, String&gt;&gt; iterator = entries.iterator();</span><br><span class="line">        while (iterator.hasNext()) &#123;</span><br><span class="line">            Map.Entry&lt;Integer, String&gt; entry = iterator.next();</span><br><span class="line">            Integer key = entry.getKey();</span><br><span class="line">            String value = entry.getValue();</span><br><span class="line">            System.out.println(key + &quot;---&quot; + value);</span><br><span class="line">        &#125;</span><br><span class="line">        //结果：</span><br><span class="line">        // 1---aaa</span><br><span class="line">        //2---ccc</span><br><span class="line">        //3---eee</span><br><span class="line">        //5---aaa</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h5><ol>
+<li>java.util包</li>
+<li>构造方法：无参数 带map参数</li>
+<li>常用方法： put ；get ；remove ；replace ；size ；</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">       TreeMap&lt;Integer,String&gt; map =new TreeMap&lt;Integer, String&gt;();</span><br><span class="line">       map.put(5,&quot;e&quot;);</span><br><span class="line">       map.put(2,&quot;b&quot;);</span><br><span class="line">       map.put(3,&quot;c&quot;);</span><br><span class="line">       map.put(7,&quot;g&quot;);</span><br><span class="line">       map.put(1,&quot;a&quot;);</span><br><span class="line">       map.put(8,&quot;h&quot;);</span><br><span class="line">       map.put(9,&quot;i&quot;);</span><br><span class="line">       map.put(4,&quot;d&quot;);</span><br><span class="line">       map.put(6,&quot;f&quot;);</span><br><span class="line">       System.out.println(map);//结果：&#123;1=a, 2=b, 3=c, 4=d, 5=e, 6=f, 7=g, 8=h, 9=i&#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>  4.底层数据结构的存储 <a href="https://pic.superbed.cn/item/5dc651278e0e2e3ee9c73f43.png" target="_blank" rel="noopener"><img src="https://pic.superbed.cn/item/5dc651278e0e2e3ee9c73f43.png?ynotemdtimestamp=1573783749767" srcset="undefined" alt="img"></a></p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E9%9B%86%E5%90%88---Map%E5%AE%B6%E6%97%8F%EF%BC%9AHashMap%E5%92%8CTreeMap">集合---Map家族：HashMap和TreeMap</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "集合---Map家族：HashMap和TreeMap&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

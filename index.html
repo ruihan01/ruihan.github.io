@@ -134,6 +134,82 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/19/%E7%BA%BF%E7%A8%8B-%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B/">
+        <p class="h4 index-header">线程---生产消费者模型</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107package producer;import java.util.ArrayList;public class Warehouse &#123;    //设置单例模式，保证仓库是同一个,也可以通过传参的方式，在Producer定义一个属性    //仓库里面的集合，存放元素    private ArrayList&lt;String&gt;list=new ArrayList&lt;&gt;();    //向集合内添加元素的方法    public void add()&#123;        if (list.size()&lt;20)&#123;    </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-19&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/JAVA">JAVA</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/19/%E7%BA%BF%E7%A8%8B/">
+        <p class="h4 index-header">线程</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">1. 区分：
+程序：可以理解为一组静态的代码
+进程：正在进行的程序（静态的代码运行起来）
+线程：进程中的一个小单元 ，操作系统级别 CPU
+
+2. 类别：
+主线程 系统线程
+用户线程 main
+守护线程 GC
+
+3. 生命周期：创建线程—就绪状态—执行状态—等待/挂起—异常/消亡
+4. 实现线程的过程：
+自己描述一个类
+继承一个父类Thread
+重写run()方法
+
+1234567891011121314151617package testthread;public class Runningman  extends Thread&#123;    private String name;    public Runningman()&#123;&#125;    public Runningman(String name)&#123;        this.name=name;    &#125;    @Override    public void run() &#123;        for (int i=1;i&lt;=100;i++)&#123;            </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-19&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/JAVA">JAVA</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/11/15/%E9%9B%86%E5%90%88-Map%E5%AE%B6%E6%97%8F%EF%BC%9AHashMap%E5%92%8CTreeMap/">
         <p class="h4 index-header">集合---Map家族：HashMap和TreeMap</p>
         

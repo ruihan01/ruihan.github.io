@@ -134,6 +134,79 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/12/01/IO%E4%B9%8BFile%E7%B1%BB/">
+        <p class="h4 index-header">IO之File类</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">I/O相关按数据流动的方向分类：读数据（输入input）写数据（输出output）
+File类
+所属java.io包
+文件或目录的抽象表示形式
+File与真实硬盘中的文件或文件夹不是一个东西。File是内存中的一个对象&lt;—-映射—-&gt;硬盘上的文件或文件夹。
+
+常用方法：- canExecute()是否可执行- canRead()是否可以打开- canWrite()是否可写- isHidden()是否隐藏- isFile()判断当前的file是否是一个文件- isDirectory()判断当前的file是否是一个目录- length()获取文件大小，是long类型的- lastModified()获取文件最后修改时间，获得的是毫秒值，是long类型的- setLastModified()修改文件时间- getAbsolutePath()获取文件的绝对路径-getName()获取文件名1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950import </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-01&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/JAVA">JAVA</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/12/01/IO%E4%B9%8B%E5%AD%97%E8%8A%82%E5%9E%8B%E6%96%87%E4%BB%B6%E6%B5%81/">
+        <p class="h4 index-header">IO之字节型文件流</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">流的总分类按照方向（功能）来区分in（读取）out（写入）操作目标来区分：文件流、数组流、对象流、数据流、字符串流、网络流…..
+字节型文件流FileInputStream所属包java.util 包
+继承关系继承自InputStream类
+创建对象
+调用一个带File类型的构造方法
+调用一个带String类型的构造方法
+
+常用方法：1. int code=read();每次从流管道中读取一个字节，读取的是字节的code码1234567891011121314151617181920212223242526272829package teststream;import java.io.File;import java.io.FileInputStream;import java.io.FileNotFoundException;import java.io.IOException;public class TestFileInputStream &#123;    public static void main(String[]args)  &#123;        try &#12</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-01&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/JAVA">JAVA</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/12/01/HDFS/">
         <p class="h4 index-header">HDFS</p>
         

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>HDFS ~ Hexo</title>
+
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
+
+
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Hexo</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">Archives</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">Categories</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">Tags</a>
+          </li>
+        
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">About</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2" id="background"
+         style="background: url('/img/people3.jpg')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
+      <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Sunday, December 1st 2019, 3:58 pm
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.5k 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      10 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h4 id="HDFS容错机制"><a href="#HDFS容错机制" class="headerlink" title="HDFS容错机制"></a>HDFS容错机制</h4><ul>
+<li>一种机制是备份那些组成文件系统元数据持久状态的文件</li>
+<li>运行一个辅助namenode（Secondary NameNode）。</li>
+</ul>
+<h5 id="Secondary-NameNode的作用是什么？是如何工作的？"><a href="#Secondary-NameNode的作用是什么？是如何工作的？" class="headerlink" title="Secondary NameNode的作用是什么？是如何工作的？"></a>Secondary NameNode的作用是什么？是如何工作的？</h5><h6 id="NameNode"><a href="#NameNode" class="headerlink" title="NameNode"></a>NameNode</h6><p>HDFS集群有两类节点以管理者和工作者的工作模式运行，namenode就是其中的管理者。它管理着文件系统的命名空间，维护着文件系统树及整棵树的所有文件和目录。这些信息以两个文件的形式保存于内存或者磁盘，这两个文件是：命名空间镜像文件fsimage和编辑日志文件edit logs ，同时namenode也记录着每个文件中各个块所在的数据节点信息。</p>
+<p><strong>namenode对元数据的操作过程</strong></p>
+<p> <img src="https://pic.superbed.cn/item/5de1e6958e0e2e3ee9302ca8.png?ynotemdtimestamp=1575077189756" srcset="undefined" alt="img"></p>
+<p> 图中有两个文件：</p>
+<ol>
+<li>fsimage:文件系统映射文件，也是元数据的镜像文件（磁盘中），存储某段时间namenode内存元数据信息。</li>
+<li>edits log:操作日志文件。</li>
+</ol>
+<p>这种工作方式的特点：</p>
+<ol>
+<li>namenode始终在内存中存储元数据（metedata）,使得“读操作”更加快、</li>
+<li>有“写请求”时，向edits文件写入日志，成功返回后才修改内存，并向客户端返回。</li>
+<li>fsimage文件为metedata的镜像，不会随时同步，与edits合并生成新的fsimage。</li>
+</ol>
+<p>从以上特点可以知道，edits文件会在集群运行的过程中不断增多，占用更多的存储空间，虽然有合并，但是只有在namenode重启时才会进行。并且在实际工作环境很少重启namenode.</p>
+<p>这就带来了一下问题：</p>
+<ol>
+<li>edits文件不断增大，如何存储和管理？</li>
+<li>因为需要合并大量的edits文件生成fsimage，导致namenode重启时间过长。</li>
+<li>一旦namenode宕机，用于恢复的fsiamge数据很旧，会造成大量数据的丢失。</li>
+</ol>
+<h6 id="Secondary-NameNode"><a href="#Secondary-NameNode" class="headerlink" title="Secondary NameNode"></a>Secondary NameNode</h6><p>上述问题的解决方案:</p>
+<p>运行辅助namenode–Secondary NameNode，为主namenode内存中的文件系统元数据创建检查点，Secondary NameNode所做的不过是在文件系统中设置一个检查点来帮助NameNode更好的工作。它不是要取代掉NameNode也不是NameNode的备份.</p>
+<p>SecondaryNameNode有两个作用:<br>一是镜像备份，二是日志与镜像的定期合并。两个过程同时进行，称为checkpoint（检查点）。</p>
+<p>镜像备份的作用:<br>备份fsimage(fsimage是元数据发送检查点时写入文件)；</p>
+<p>日志与镜像的定期合并的作用：<br>将Namenode中edits日志和fsimage合并,防止如果Namenode节点故障，namenode下次启动的时候，会把fsimage加载到内存中，应用edits log,edits log往往很大，导致操作往往很耗时。</p>
+<p><strong>Secondary NameNode创建检查点过程</strong> <img src="https://pic.superbed.cn/item/5de1e8f88e0e2e3ee9309bab.png?ynotemdtimestamp=1575077189756" srcset="undefined" alt="img">Secondarynamenode工作过程如下：</p>
+<ol>
+<li>SecondaryNameNode通知NameNode准备提交edits文件，此时主节点将新的写操作数据记录到一个新的文件edits.new中。</li>
+<li>SecondaryNameNode通过HTTP GET方式获取NameNode的fsimage与edits文件（在SecondaryNameNode的current同级目录下可见到 temp.check-point或者previous-checkpoint目录，这些目录中存储着从namenode拷贝来的镜像文件）。</li>
+<li>SecondaryNameNode开始合并获取的上述两个文件，产生一个新的fsimage文件fsimage.ckpt。</li>
+<li>SecondaryNameNode用HTTP POST方式发送fsimage.ckpt至NameNode。</li>
+<li>NameNode将fsimage.ckpt与edits.new文件分别重命名为fsimage与edits，然后更新fstime，整个checkpoint过程到此结束。</li>
+<li>SecondaryNameNode备份由三个参数控制fs.checkpoint.period控制周期（以秒为单位，默认3600秒），fs.checkpoint.size控制日志文件超过多少大小时合并（以字节为单位，默认64M）， dfs.http.address表示http地址，这个参数在SecondaryNameNode为单独节点时需要设置。</li>
+</ol>
+<h4 id="HDFS的高可用性-HA"><a href="#HDFS的高可用性-HA" class="headerlink" title="HDFS的高可用性(HA)"></a>HDFS的高可用性(HA)</h4><p>Hadoop2.0的HA 机制有两个NameNode，一个是Active状态，另一个是Standby状态。两者的状态可以切换，但同时最多只有1个是Active状态。只有Active Namenode提供对外的服务。Active NameNode和Standby NameNode之间通过NFS或者JN（JournalNode，QJM方式）来同步数据。</p>
+<p>Active NameNode会把最近的操作记录写到本地的一个edits文件中（edits file），并传输到NFS或者JN中。Standby NameNode定期的检查，从NFS或者JN把最近的edit文件读过来，然后把edits文件和fsimage文件合并成一个新的fsimage，合并完成之后会通知Active NameNode获取这个新fsimage。Active NameNode获得这个新的fsimage文件之后，替换原来旧的fsimage文件。</p>
+<p>这样，保持了Active NameNode和Standby NameNode的数据实时同步，Standby NameNode可以随时切换成Active NameNode（譬如Active NameNode挂了）。而且还有一个原来Hadoop1.0的SecondaryNameNode，CheckpointNode，BackupNode的功能：合并edits文件和fsimage文件，使fsimage文件一直保持更新。所以启动了hadoop2.0的HA机制之后，SecondaryNameNode，CheckpointNode，BackupNode这些都不需要了。</p>
+<p>数据同步方式：NFS与 QJM（Quorum Journal Manager ）</p>
+<p>1、NFS过滤器</p>
+<p>NFS作为Active NameNode和Standby NameNode之间数据共享的存储。Active NameNode会把最近的edits文件写到NFS，而Standby NameNode从NFS中把数据读过来。这个方式的缺点是，如果Active NameNode或者Standby Namenode有一个和NFS之间网络有问题，则会造成他们之前数据的同步出问题。</p>
+<p><img src="https://pic3.superbed.cn/item/5de3215e8e0e2e3ee957c6e1.png?ynotemdtimestamp=1575077189756" srcset="undefined" alt="img"></p>
+<p>2、 QJM（Quorum Journal Manager ）群体日志管理器</p>
+<p>QJM的方式可以解决上述NFS容错机制不足的问题。Active NameNode和Standby NameNode之间是通过一组JournalNode（数量是奇数，可以是3,5,7…,2n+1）来共享数据。Active NameNode把最近的edits文件写到2n+1个JournalNode上，只要有n+1个写入成功就认为这次写入操作成功了，然后Standby NameNode就可以从JournalNode上读取了。可以看到，QJM方式有容错机制，可以容忍n个JournalNode的失败。</p>
+<p><img src="https://pic1.superbed.cn/item/5de321a88e0e2e3ee957cd7f.png?ynotemdtimestamp=1575077189756" srcset="undefined" alt="img"></p>
+<p><strong>为什么JN一定是奇数个呢？</strong></p>
+<p>zookeeper有这样一个特性：集群中只要有过半的机器是正常工作的，那么整个集群对外就是可用的。也就是说如果有2个zookeeper，那么只要有1个死了zookeeper就不能用了，因为1没有过半，所以2个zookeeper的死亡容忍度为0；同理，要是有3个zookeeper，一个死了，还剩下2个正常的，过半了，所以3个zookeeper的容忍度为1；同理你多列举几个：2-&gt;0;3-&gt;1;4-&gt;1;5-&gt;2;6-&gt;2会发现一个规律，2n和2n-1的容忍度是一样的，都是n-1，所以为了更加高效，何必增加那一个不必要的zookeeper呢。JN也是如此。</p>
+<p>Active和Standby两个NameNode之间的数据交互流程为：</p>
+<p>1）NameNode在启动后，会先加载FSImage文件和共享目录上的EditLog Segment文件；</p>
+<p>2）Standby NameNode会启动EditLogTailer线程和StandbyCheckpointer线程，正式进入Standby模式；</p>
+<p>3）Active NameNode把EditLog提交到JournalNode集群；</p>
+<p>4）Standby NameNode上的EditLogTailer 线程定时从JournalNode集群上同步EditLog；</p>
+<p>5）Standby NameNode上的StandbyCheckpointer线程定时进行Checkpoint，并将Checkpoint之后的FSImage文件上传到Active NameNode。（在Hadoop 2.0中不再有Secondary NameNode这个角色了，StandbyCheckpointer线程的作用其实是为了替代 Hadoop 1.0版本中的Secondary NameNode的功能。）</p>
+<p>QJM方式有明显的优点，一是本身就有fencing的功能，二是通过多个Journal节点增强了系统的健壮性，所以建议在生产环境中采用QJM的方式。JournalNode消耗的资源很少，不需要额外的机器专门来启动JournalNode，可以从Hadoop集群中选几台机器同时作为JournalNode。</p>
+<p>主备NameNode切换</p>
+<p>Active NameNode和Standby NameNode可以随时切换，可以人工和自动。人工切换是通过执行HA管理命令来改变NameNode的状态，从Standby到Active，或从Active到Standby。自动切换则在Active NameNode挂掉的时候，Standby NameNode自动切换成Active状态。</p>
+<p><img src="https://pic1.superbed.cn/item/5de321fb8e0e2e3ee957d55d.png?ynotemdtimestamp=1575077189756" srcset="undefined" alt="img"></p>
+<p>主备NameNode的自动切换需要配置Zookeeper。Active NameNode和Standby NameNode把他们的状态实时记录到Zookeeper中，Zookeeper监视他们的状态变化。当Zookeeper发现Active NameNode挂掉后，会自动把Standby NameNode切换成Active NameNode。</p>
+<h4 id="HDFS命令用法"><a href="#HDFS命令用法" class="headerlink" title="HDFS命令用法"></a>HDFS命令用法</h4><h5 id="HDFS–-gt-gt-HDFS"><a href="#HDFS–-gt-gt-HDFS" class="headerlink" title="HDFS–&gt;&gt;HDFS"></a>HDFS–&gt;&gt;HDFS</h5><p>大部分命令和linux命令用法一样</p>
+<h6 id="1-cp-：从HDFS的一个路径拷贝到HDFS的另一个路径"><a href="#1-cp-：从HDFS的一个路径拷贝到HDFS的另一个路径" class="headerlink" title="1. -cp ：从HDFS的一个路径拷贝到HDFS的另一个路径"></a>1. -cp ：从HDFS的一个路径拷贝到HDFS的另一个路径</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -cp /sanguo/shuguo/kongming.txt /zhuge.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-mv：在HDFS目录中移动文件"><a href="#2-mv：在HDFS目录中移动文件" class="headerlink" title="2. -mv：在HDFS目录中移动文件"></a>2. -mv：在HDFS目录中移动文件</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mv /zhuge.txt /sanguo/shuguo/</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-chgrp-、-chmod、-chown：Linux文件系统中的用法一样，修改文件所属权限"><a href="#3-chgrp-、-chmod、-chown：Linux文件系统中的用法一样，修改文件所属权限" class="headerlink" title="3. -chgrp 、-chmod、-chown：Linux文件系统中的用法一样，修改文件所属权限"></a>3. -chgrp 、-chmod、-chown：Linux文件系统中的用法一样，修改文件所属权限</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs  -chmod  666  /sanguo/shuguo/kongming.txt</span><br><span class="line">hadoop fs  -chown  root:root  /sanguo/shuguo/kongming.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-rmdir：删除空目录-mkdir：建立空目录"><a href="#4-rmdir：删除空目录-mkdir：建立空目录" class="headerlink" title="4. -rmdir：删除空目录 ;-mkdir：建立空目录"></a>4. -rmdir：删除空目录 ;-mkdir：建立空目录</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir -p /test</span><br><span class="line">hadoop fs -rmdir /test</span><br></pre></td></tr></table></figure>
+
+<h6 id="5-cat：显示文件内容"><a href="#5-cat：显示文件内容" class="headerlink" title="5. -cat：显示文件内容"></a>5. -cat：显示文件内容</h6><h6 id="6-rm：删除文件或文件夹"><a href="#6-rm：删除文件或文件夹" class="headerlink" title="6. -rm：删除文件或文件夹"></a>6. -rm：删除文件或文件夹</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -rm /user/atguigu/test/jinlian2.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="7-du-统计文件夹的大小信息"><a href="#7-du-统计文件夹的大小信息" class="headerlink" title="7. -du:统计文件夹的大小信息"></a>7. -du:统计文件夹的大小信息</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -du -s -h /user/atguigu/test</span><br><span class="line"></span><br><span class="line">2.7 K  /user/atguigu/test</span><br><span class="line"></span><br><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -du  -h /user/atguigu/test</span><br><span class="line"></span><br><span class="line">1.3 K  /user/atguigu/test/README.txt</span><br><span class="line">15     /user/atguigu/test/jinlian.txt</span><br><span class="line">1.4 K  /user/atguigu/test/zaiyiqi.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="8-df"><a href="#8-df" class="headerlink" title="8. -df"></a>8. -df</h6><h6 id="9-tail：显示一个文件的末尾"><a href="#9-tail：显示一个文件的末尾" class="headerlink" title="9. -tail：显示一个文件的末尾"></a>9. -tail：显示一个文件的末尾</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -tail /sanguo/shuguo/kongming.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="10-setrep：设置HDFS中文件的副本数量"><a href="#10-setrep：设置HDFS中文件的副本数量" class="headerlink" title="10.-setrep：设置HDFS中文件的副本数量"></a>10.-setrep：设置HDFS中文件的副本数量</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -setrep 10 /sanguo/shuguo/kongming.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="11-列出文件系统中各个文件有哪些块构成"><a href="#11-列出文件系统中各个文件有哪些块构成" class="headerlink" title="11.列出文件系统中各个文件有哪些块构成"></a>11.列出文件系统中各个文件有哪些块构成</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs fsck / -files -blocks</span><br></pre></td></tr></table></figure>
+
+<h6 id="12-ls-查看HDFS文件列表"><a href="#12-ls-查看HDFS文件列表" class="headerlink" title="12. -ls:查看HDFS文件列表"></a>12. -ls:查看HDFS文件列表</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -ls /</span><br></pre></td></tr></table></figure>
+
+<h6 id="13-help：输出这个命令参数"><a href="#13-help：输出这个命令参数" class="headerlink" title="13. -help：输出这个命令参数"></a>13. -help：输出这个命令参数</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -help rm</span><br></pre></td></tr></table></figure>
+
+<h5 id="本地–-gt-gt-HDFS"><a href="#本地–-gt-gt-HDFS" class="headerlink" title="本地–&gt;&gt;HDFS"></a>本地–&gt;&gt;HDFS</h5><h6 id="1-copyFromLocal：从本地文件系统中拷贝文件到HDFS路径去"><a href="#1-copyFromLocal：从本地文件系统中拷贝文件到HDFS路径去" class="headerlink" title="1.-copyFromLocal：从本地文件系统中拷贝文件到HDFS路径去"></a>1.-copyFromLocal：从本地文件系统中拷贝文件到HDFS路径去</h6><h6 id="2-put：等同于copyFromLocal"><a href="#2-put：等同于copyFromLocal" class="headerlink" title="2. -put：等同于copyFromLocal"></a>2. -put：等同于copyFromLocal</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -put ./zaiyiqi.txt /user/atguigu/test/</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-moveFromLocal：从本地剪切粘贴到HDFS"><a href="#3-moveFromLocal：从本地剪切粘贴到HDFS" class="headerlink" title="3. -moveFromLocal：从本地剪切粘贴到HDFS"></a>3. -moveFromLocal：从本地剪切粘贴到HDFS</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ touch kongming.txt</span><br><span class="line">[root@master hadoop-2.7.7]$  hadoop fs  -moveFromLocal  ./kongming.txt  /sanguo/shuguo</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-appendToFile：追加一个文件到已经存在的文件末尾"><a href="#4-appendToFile：追加一个文件到已经存在的文件末尾" class="headerlink" title="4. -appendToFile：追加一个文件到已经存在的文件末尾"></a>4. -appendToFile：追加一个文件到已经存在的文件末尾</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ touch liubei.txt</span><br><span class="line">[root@master hadoop-2.7.7]$ vi liubei.txt</span><br><span class="line">输入</span><br><span class="line">san gu mao lu</span><br><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -appendToFile liubei.txt /sanguo/shuguo/kongming.txt</span><br></pre></td></tr></table></figure>
+
+<h5 id="HDFS–-gt-gt-本地"><a href="#HDFS–-gt-gt-本地" class="headerlink" title="HDFS–&gt;&gt;本地"></a>HDFS–&gt;&gt;本地</h5><h6 id="1-get：等同于copyToLocal，就是从HDFS下载文件到本地"><a href="#1-get：等同于copyToLocal，就是从HDFS下载文件到本地" class="headerlink" title="1. -get：等同于copyToLocal，就是从HDFS下载文件到本地"></a>1. -get：等同于copyToLocal，就是从HDFS下载文件到本地</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$  hadoop fs -get /sanguo/shuguo/kongming.txt ./</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-getmerge：合并下载多个文件"><a href="#2-getmerge：合并下载多个文件" class="headerlink" title="2.-getmerge：合并下载多个文件"></a>2.-getmerge：合并下载多个文件</h6><p>比如HDFS的目录 /user/atguigu/test下有多个文件:log.1, log.2,log.3,…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -getmerge /user/atguigu/test/* ./zaiyiqi.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-copyToLocal：从HDFS拷贝到本地"><a href="#3-copyToLocal：从HDFS拷贝到本地" class="headerlink" title="3. -copyToLocal：从HDFS拷贝到本地"></a>3. -copyToLocal：从HDFS拷贝到本地</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.7]$ hadoop fs -copyToLocal /sanguo/shuguo/kongming.txt ./</span><br></pre></td></tr></table></figure>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/Hadoop">Hadoop</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+  </div>
+</div>
+
+    
+  </main>
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
+    
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
+
+    
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+<!-- Plugins -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+
+  <script src="/lib/typed/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "HDFS&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+</body>
+</html>

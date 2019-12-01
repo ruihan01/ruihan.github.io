@@ -134,6 +134,52 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/12/01/HDFS/">
+        <p class="h4 index-header">HDFS</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">HDFS容错机制
+一种机制是备份那些组成文件系统元数据持久状态的文件
+运行一个辅助namenode（Secondary NameNode）。
+
+Secondary NameNode的作用是什么？是如何工作的？NameNodeHDFS集群有两类节点以管理者和工作者的工作模式运行，namenode就是其中的管理者。它管理着文件系统的命名空间，维护着文件系统树及整棵树的所有文件和目录。这些信息以两个文件的形式保存于内存或者磁盘，这两个文件是：命名空间镜像文件fsimage和编辑日志文件edit logs ，同时namenode也记录着每个文件中各个块所在的数据节点信息。
+namenode对元数据的操作过程
+ 
+ 图中有两个文件：
+
+fsimage:文件系统映射文件，也是元数据的镜像文件（磁盘中），存储某段时间namenode内存元数据信息。
+edits log:操作日志文件。
+
+这种工作方式的特点：
+
+namenode始终在内存中存储元数据（metedata）,使得“读操作”更加快、
+有“写请求”时，向edits文件写入日志，成功返回后才修改内存，并向客户端返回。
+fsimage文件为met</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-01&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Hadoop">Hadoop</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/11/19/%E7%BA%BF%E7%A8%8B-%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B/">
         <p class="h4 index-header">线程---生产消费者模型</p>
         

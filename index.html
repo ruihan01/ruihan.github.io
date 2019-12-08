@@ -134,6 +134,81 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/12/08/LAMP%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/">
+        <p class="h4 index-header">LAMP平台搭建</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">安装Apache
+安装
+
+1[root@localhost /]# yum -y install  httpd
+
+
+
+开启apache服务
+
+1[root@localhost /]# systemctl start httpd
+
+查看80端口是否开放，开放说明已经打开
+1[root@localhost /]# netstat -antp
+
+
+
+设置apache服务开机启动
+
+1[root@localhost /]# systemctl enable httpd
+
+
+验证apache服务是否安装成功
+
+
+查看虚拟机IP
+
+1[root@localhost /]# ip addr
+
+
+
+关闭防火墙
+
+12[root@localhost /]# systemctl stop firewalld[root@localhost /]# setenforce 0
+
+
+访问IP 得到以下界面说明Apache安装成功啦！ 
+
+安装PHP
+安装
+
+1[root@localhost /]# yum -y install php
+
+
+重启Apache服务
+
+1[root@localhost /]# syst</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-08&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Linux">Linux</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/2019/12/01/IO%E4%B9%8BFile%E7%B1%BB/">
         <p class="h4 index-header">IO之File类</p>
         

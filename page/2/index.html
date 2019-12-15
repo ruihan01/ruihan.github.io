@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Archive ~ Hexo</title>
+  <title>Hexo</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -96,7 +96,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/.png')no-repeat center center;
+         style="background: url('/img/cat1.jpg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -109,6 +109,10 @@
             
           </div>
 
+          
+            <div class="scroll-down-bar">
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
+            </div>
           
         </div>
       </div>
@@ -125,44 +129,59 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">11 posts in total.</p>
-  <hr>
-  
+
+  <div class="row mb-4 mx-auto">
     
-      
-      <p class="h5">2019</p>
     
-    <a href="/2019/12/15/Hadoop%E6%90%AD%E5%BB%BA/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hadoop搭建</span>
-      <span style="float: right;">12-15</span>
-    </a>
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/11/15/%E9%9B%86%E5%90%88%E5%AE%9E%E6%88%98-%E8%80%83%E8%AF%95%E6%A8%A1%E6%8B%9F/">
+        <p class="h4 index-header">集合实战--考试模拟</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">**制作一个考试模拟过程： **考试机存储好多题目 学生考试之前需要先登录认证考试机随机生成试卷，每个试卷五道题学生利用生成的试卷考试老师批阅卷子，给出考试成绩
+代码分析：有几个实体类？—-》有几个实体
+考试题目有两个属性—》题干和正确答案
+方法—》判断题干是否一样，HashSet的不重复机制本来就是equals和hashCode方法起作用。因为我们的题目定的是Question类型的，equals方法是没有被重写的。所以我们需要先重写equals和hashCode方法。
+考试机器属性—》学生信息库HashMap块—对象形成过程中同时添加元素
+属性—》题库，存取很多Question对象， 无重复HashSet，参数类型就是Qusetion块—对象形成过程中同时添加元素
+方法—》登录
+方法—》抽取题目，形成试卷我们需要随机抽取五道题形成一份试卷，但是Set是无序的，所以我们先转化为ArrayList，方便我们用Random抽取。抽取完我们需要形成试卷，试卷是做什么的呢？试卷是学生做题用的，做题需要一个一个答，那就需要遍历，所以我们把试卷封装成ArrayList
+学生方法 —》考试（参数：试</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-15&nbsp;&nbsp;
+        
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/JAVA">JAVA</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
   
-    
-    <a href="/2019/12/08/LAMP%E5%B9%B3%E5%8F%B0%E6%90%AD%E5%BB%BA/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">LAMP平台搭建</span>
-      <span style="float: right;">12-08</span>
-    </a>
-  
-    
-    <a href="/2019/12/01/IO%E4%B9%8BFile%E7%B1%BB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">IO之File类</span>
-      <span style="float: right;">12-01</span>
-    </a>
-  
-    
-    <a href="/2019/12/01/IO%E4%B9%8B%E5%AD%97%E8%8A%82%E5%9E%8B%E6%96%87%E4%BB%B6%E6%B5%81/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">IO之字节型文件流</span>
-      <span style="float: right;">12-01</span>
-    </a>
-  
-    
-    <a href="/2019/12/01/HDFS/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">HDFS</span>
-      <span style="float: right;">12-01</span>
-    </a>
-  
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
+
 
 
               </div>
@@ -284,7 +303,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

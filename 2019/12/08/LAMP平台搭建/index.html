@@ -120,7 +120,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    448 字
+                    669 字
                   </span>&nbsp;
                 
 
@@ -166,7 +166,7 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# yum -y install  httpd</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://pic.superbed.cn/item/5decace5f1f6f81c507b79eb.png?ynotemdtimestamp=1575803655620" srcset="undefined" alt="img"></p>
+<p><img src="https://pic.superbed.cn/item/5decace5f1f6f81c507b79eb.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></p>
 <ol>
 <li>开启apache服务</li>
 </ol>
@@ -175,7 +175,7 @@
 <p>查看80端口是否开放，开放说明已经打开</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# netstat -antp</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://pic3.superbed.cn/item/5decafe2f1f6f81c507c0b01.png?ynotemdtimestamp=1575803655620" srcset="undefined" alt="img"></p>
+<p><img src="https://pic3.superbed.cn/item/5decafe2f1f6f81c507c0b01.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></p>
 <ol>
 <li>设置apache服务开机启动</li>
 </ol>
@@ -189,14 +189,14 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# ip addr</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://pic3.superbed.cn/item/5decaf24f1f6f81c507be976.png?ynotemdtimestamp=1575803655620" srcset="undefined" alt="img"></p>
+<p><img src="https://pic3.superbed.cn/item/5decaf24f1f6f81c507be976.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></p>
 <ul>
 <li>关闭防火墙</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# systemctl stop firewalld</span><br><span class="line">[root@localhost /]# setenforce 0</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>访问IP 得到以下界面说明Apache安装成功啦！ <img src="https://pic1.superbed.cn/item/5decb07af1f6f81c507c239f.png?ynotemdtimestamp=1575803655620" srcset="undefined" alt="img"></li>
+<li>访问IP 得到以下界面说明Apache安装成功啦！ <img src="https://pic1.superbed.cn/item/5decb07af1f6f81c507c239f.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></li>
 </ul>
 <h4 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h4><ol>
 <li>安装</li>
@@ -209,14 +209,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# systemctl restart httpd</span><br></pre></td></tr></table></figure>
 
 <ol>
-<li>写一个PHP文件在浏览器运行一下 （这个也可以不按照我写的这个，自己写一个或者去网上找一个php文件即可） <img src="https://pic.superbed.cn/item/5decb387f1f6f81c507caf37.png?ynotemdtimestamp=1575803655620" srcset="undefined" alt="img"></li>
+<li>写一个PHP文件在浏览器运行一下 （这个也可以不按照我写的这个，自己写一个或者去网上找一个php文件即可） <img src="https://pic.superbed.cn/item/5decb387f1f6f81c507caf37.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www/html/</span><br><span class="line">vi info.php</span><br><span class="line">#编辑的内容为这个</span><br><span class="line">&lt;?php phpinfo(); ?&gt;</span><br></pre></td></tr></table></figure>
 
 <ol>
-<li>在自己电脑浏览器输入自己网址和PHP文件名称进行检验，如果能出现PHP的一些信息（如下图），则成功啦！ <img src="https://pic1.superbed.cn/item/5decb3eaf1f6f81c507cbdf7.png?ynotemdtimestamp=1575803655620" srcset="undefined" alt="img"></li>
+<li>在自己电脑浏览器输入自己网址和PHP文件名称进行检验，如果能出现PHP的一些信息（如下图），则成功啦！ <img src="https://pic1.superbed.cn/item/5decb3eaf1f6f81c507cbdf7.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></li>
 </ol>
-<h4 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h4><ol>
+<h4 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h4><h6 id="方法一-安装的是mariadb"><a href="#方法一-安装的是mariadb" class="headerlink" title="方法一:安装的是mariadb"></a>方法一:安装的是mariadb</h6><ol>
 <li>安装MySQL</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost html]# yum install mysql mysql-server</span><br></pre></td></tr></table></figure>
@@ -224,7 +224,7 @@
 <p>启动mysql服务</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost html]# systemctl start mysql.service</span><br></pre></td></tr></table></figure>
 
-<p>发现报错如下： <img src="https://pic3.superbed.cn/item/5decb57ef1f6f81c507d1267.png?ynotemdtimestamp=1575803655620" srcset="undefined" alt="img"></p>
+<p>发现报错如下： <img src="https://pic3.superbed.cn/item/5decb57ef1f6f81c507d1267.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></p>
 <p>这时，则安装 mariadb-server</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost html]# yum install -y mariadb-server</span><br></pre></td></tr></table></figure>
 
@@ -241,14 +241,34 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost html]# mysql_secure_installation</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://pic2.superbed.cn/item/5decbf2df1f6f81c507ec708.png?ynotemdtimestamp=1575803655620" srcset="undefined" alt="img"></p>
+<p><img src="https://pic2.superbed.cn/item/5decbf2df1f6f81c507ec708.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></p>
 <ol>
 <li>进入MySQL验证是否安装成功</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# mysql -u root -p</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://pic2.superbed.cn/item/5decbf62f1f6f81c507ed02c.png?ynotemdtimestamp=1575803655620" srcset="undefined" alt="img">exit语句退出MySQL</p>
+<p><img src="https://pic2.superbed.cn/item/5decbf62f1f6f81c507ed02c.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"> exit语句退出MySQL</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [(none)]&gt; exit</span><br></pre></td></tr></table></figure>
+
+<h6 id="方法二-安装的是mysqld"><a href="#方法二-安装的是mysqld" class="headerlink" title="方法二:安装的是mysqld"></a>方法二:安装的是mysqld</h6><ol>
+<li>安装mysql</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost html]# yum install -y mysql</span><br><span class="line">[root@localhost html]# yum install -y  mysql-server</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>设置开机启动MySQL服务</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# systemctl enable mysqld</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>设置root账户的密码</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost html]# mysqladmin -u root -p password</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>进入MySQL验证是否安装成功</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# mysql -u root -p</span><br></pre></td></tr></table></figure>
 
 <h4 id="将PHP与MySQL关联起来"><a href="#将PHP与MySQL关联起来" class="headerlink" title="将PHP与MySQL关联起来"></a>将PHP与MySQL关联起来</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# yum -y install php-mysql</span><br></pre></td></tr></table></figure>
 
@@ -263,6 +283,22 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost /]# systemctl restart httpd</span><br></pre></td></tr></table></figure>
 
 <p>然后在浏览器再次访问运行info.php,你会看到安装的模块信息</p>
+<h4 id="使用lamp搭建网站"><a href="#使用lamp搭建网站" class="headerlink" title="使用lamp搭建网站"></a>使用lamp搭建网站</h4><p>（自行搜索成型的网站，并部署到lamp中，浏览器展示。 ）</p>
+<ol>
+<li>用ftp上传成型网站的压缩包到虚拟机/var/www/html <img src="https://pic2.superbed.cn/item/5df592d7a4fbc8614a793869.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></li>
+<li>解压文件.由于此压缩包后缀名为.zip，所以应该用unzip或zip解压</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@fanruihan1 html]# yum install -y unzip zip</span><br><span class="line">[root@fanruihan1 html]# unzip html\ AWD.zip</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.superbed.cn/item/5df596d9a4fbc8614a79f618.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></p>
+<p><a href="https://suixinblog.cn/2018/11/tar-gzip-zip-rar.html" target="_blank" rel="noopener">解压命令解析</a></p>
+<ol>
+<li>用浏览器打开，即为一个网站 <img src="https://pic1.superbed.cn/item/5df5950da4fbc8614a79a79c.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></li>
+</ol>
+<h4 id="MySQL以PHP形式展现"><a href="#MySQL以PHP形式展现" class="headerlink" title="MySQL以PHP形式展现"></a>MySQL以PHP形式展现</h4><ol>
+<li>网站后台数据库连接成功展示 <img src="https://pic3.superbed.cn/item/5df60ddaa4fbc8614a8f0182.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"><br><img src="https://pic3.superbed.cn/item/5df60df5a4fbc8614a8f0547.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"> <img src="https://pic1.superbed.cn/item/5df60e07a4fbc8614a8f0814.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"> <img src="https://pic3.superbed.cn/item/5df60e18a4fbc8614a8f0ad2.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"><br><img src="https://pic.superbed.cn/item/5df60e30a4fbc8614a8f0ea2.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></li>
+<li>网站数据库数据调取成功展示 <img src="https://pic1.superbed.cn/item/5df60e6ba4fbc8614a8f1996.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"><br><img src="https://pic1.superbed.cn/item/5df60e8ca4fbc8614a8f1e41.png?ynotemdtimestamp=1576406092829" srcset="undefined" alt="img"></li>
+</ol>
 
             <hr>
           </div>
